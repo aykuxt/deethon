@@ -237,7 +237,7 @@ tornado = ">=5.0"
 
 [[package]]
 name = "mkdocs-material"
-version = "6.0.2"
+version = "6.2.6"
 description = "A Material Design theme for MkDocs"
 category = "dev"
 optional = false
@@ -549,7 +549,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "b58e1fc759159e307d46ef58a452ce663291b173012024119412573a7dc1ad41"
+content-hash = "4389e83d93d8a17f0d3ba1137bbe40589c0d483ab4f8b59edd131de97a47b2ea"
 
 [metadata.files]
 astroid = [
@@ -735,8 +735,8 @@ mkdocs = [
     {file = "mkdocs-1.1.2.tar.gz", hash = "sha256:f0b61e5402b99d7789efa032c7a74c90a20220a9c81749da06dbfbcbd52ffb39"},
 ]
 mkdocs-material = [
-    {file = "mkdocs-material-6.0.2.tar.gz", hash = "sha256:1adcb2d1b76b200e26c54b68784a0b3c4cf9bf21efe1c43edf5c59e514b30ef6"},
-    {file = "mkdocs_material-6.0.2-py2.py3-none-any.whl", hash = "sha256:67334845400089e87370661bd0b885ba0cc995920ef1d11259d72300a6b9893f"},
+    {file = "mkdocs-material-6.2.6.tar.gz", hash = "sha256:7effb1aac0505d35b58117a3477083f315f574e4f86f8d6011f6ee7eb9041863"},
+    {file = "mkdocs_material-6.2.6-py2.py3-none-any.whl", hash = "sha256:0f00bfcd6eb60f77dee06bfdac5eff5982b99fbc3bce68191cc8f4b2f8f8d60c"},
 ]
 mkdocs-material-extensions = [
     {file = "mkdocs-material-extensions-1.0.tar.gz", hash = "sha256:17d7491e189af75700310b7ec33c6c48a22060b8b445001deca040cb60471cde"},

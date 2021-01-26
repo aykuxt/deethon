@@ -26,7 +26,7 @@ class Session:
         self._arl_token: str = arl_token
         self._req = requests.Session()
         self._req.cookies["arl"] = self._arl_token
-        self._csrf_token = "null"
+        self._csrf_token = ""
         self._session_expires = 0
 
     def _refresh_session(self) -> None:
@@ -36,9 +36,9 @@ class Session:
         self._csrf_token = user["checkForm"]
         self._session_expires = time.time() + 3600
 
-    def get_api(self, method: str, json=None) -> dict:
+    def get_api(self, method: str, json: dict = None) -> dict:
         if not method == consts.METHOD_GET_USER and \
-                (self._csrf_token == "null" or self._session_expires > time.time()):
+                (not self._csrf_token or self._session_expires > time.time()):
             self._refresh_session()
 
         params = {
@@ -72,7 +72,8 @@ class Session:
                 supported for download.
             InvalidUrlError: The specified URL is not a valid deezer link.
         """
-        match = re.match(r"https?://(?:www\.)?deezer\.com/(?:\w+/)?(\w+)/(\d+)", url)
+        match = re.match(
+            r"https?://(?:www\.)?deezer\.com/(?:\w+/)?(\w+)/(\d+)", url)
         if match:
             mode = match.group(1)
             content_id = int(match.group(2))
@@ -107,9 +108,9 @@ class Session:
         track.add_more_tags(self)
         quality = utils.get_quality(bitrate)
         download_url = utils.get_stream_url(track, quality)
-        crypt = self._req.get(download_url, stream=True)
+        res = self._req.get(download_url, stream=True)
 
-        total = int(crypt.headers["Content-Length"])
+        total = int(res.headers["Content-Length"])
         if not total:
             if bitrate == "FLAC":
                 fallback_bitrate = "MP3_320"
@@ -126,7 +127,7 @@ class Session:
         file_path = utils.get_file_path(track, ext)
 
         with file_path.open("wb") as f:
-            for data in utils.decrypt_file(crypt.iter_content(2048), track.id):
+            for data in res.iter_content(4096):
                 current += len(data)
                 f.write(data)
                 if progress_callback:

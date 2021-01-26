@@ -5,11 +5,11 @@ The utils module contains several useful functions that are used within the pack
 from __future__ import annotations
 
 import hashlib
-from binascii import a2b_hex, b2a_hex
+from binascii import b2a_hex
 from pathlib import Path
-from typing import Iterator, TYPE_CHECKING, Generator, Any
+from typing import TYPE_CHECKING
 
-from Crypto.Cipher import AES, Blowfish
+from Crypto.Cipher import AES
 from mutagen.flac import FLAC, Picture
 from mutagen.id3 import ID3, Frames
 
@@ -73,30 +73,7 @@ def get_stream_url(track: Track, quality: str) -> str:
         data += b"\x00" * (16 - len(data) % 16)
     c = AES.new("jo6aey6haid2Teih".encode(), AES.MODE_ECB)
     hashs = b2a_hex(c.encrypt(data)).decode()
-    return f"https://e-cdns-proxy-{track.md5_origin[0]}.dzcdn.net/mobile/1/{hashs}"
-
-
-def decrypt_file(input_data: Iterator, track_id: int) -> Generator[bytes, Any, None]:
-    """
-    Decrypt an encrypted track.
-
-    Args:
-        input_data: The input stream must have a chunk size of 2048.
-        track_id: The id of the track to be decrypted.
-
-    Returns:
-        A Generator object containing the decrypted data
-    """
-    h = md5hex(str(track_id).encode())
-    key = "".join(
-        chr(h[i] ^ h[i + 16] ^ b"g4el58wc0zvf9na1"[i]) for i in range(16))
-    seg = 0
-    for data in input_data:
-        if (seg % 3) == 0 and len(data) == 2048:
-            data = Blowfish.new(key.encode(), Blowfish.MODE_CBC,
-                                a2b_hex("0001020304050607")).decrypt(data)
-        seg += 1
-        yield data
+    return f"http://e-cdn-proxy-{track.md5_origin[0]}.dzcdn.net/api/1/{hashs}"
 
 
 def tag(file_path: Path, track: Track) -> None:

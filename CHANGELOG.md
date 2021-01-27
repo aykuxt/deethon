@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2021-01-27
+### Changed
+- The library is now using the unencrypted streaming endpoint (5512f6eb132a2427cad6788f623c97418fbc54d5).
+- Updated dependencies
+
+### Removed
+- Support for Python 3.7 (fb443c6b6b735f0b37cd5e2dbbf19fdf7271e919)
+
 ## [0.4.3] - 2020-07-15
 ### Added
 - Additional tags to the track object and the downloaded tracks (lyrics, copyright, etc.) (880511be8726b80333c67f9280f80b654a7f7106).
@@ -94,7 +102,8 @@ is not found (04580121bade63f8079d05142817ebaa8649bee2).
 ### Added
 - Initial release! 🎉
 
-[Unreleased]: https://github.com/deethon/deethon/compare/v0.4.3...HEAD
+[Unreleased]: https://github.com/deethon/deethon/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/deethon/deethon/compare/v0.4.3...v0.5.0
 [0.4.3]: https://github.com/deethon/deethon/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/deethon/deethon/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/deethon/deethon/compare/v0.4.0...v0.4.1

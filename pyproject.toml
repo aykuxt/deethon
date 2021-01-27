@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "deethon"
-version = "0.4.3"
+version = "0.5.0"
 description = "Python3 library to easily download music from Deezer"
 authors = ["Aykut Yilmaz <aykuxt@gmail.com>"]
 maintainers = ["Aykut Yilmaz <aykuxt@gmail.com>"]
@@ -25,11 +25,6 @@ mkdocstrings = "^0.14.0"
 pytest = "^6.2.2"
 pytest-cov = "^2.11.1"
 pylint = "^2.6.0"
-
-[tool.dephell.main]
-from = {format = "poetry", path = "pyproject.toml"}
-envs = ["main"]
-to = {format = "setuppy", path = "setup.py"}
 
 [build-system]
 requires = ["poetry>=1.0"]
